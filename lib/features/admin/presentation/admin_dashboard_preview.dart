@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'member_management_preview.dart';
+import 'document_management_preview.dart';
 
 const _navy = Color(0xFF172B4D);
 const _blue = Color(0xFF3157C8);
@@ -513,9 +514,8 @@ class _ManagementPreviewPage extends StatelessWidget {
             subtitle = 'Sample member records; no real accounts are connected.';
             content = const MemberManagementPreview();
           case 'Documents':
-            subtitle =
-                'Example PDF metadata only; files cannot be opened here.';
-            content = const _DocumentsPanel();
+            subtitle = 'Mock PDF uploads and document metadata; no files are sent to Supabase.';
+            content = const DocumentManagementPreview();
           case 'Categories':
             subtitle = 'The nine approved V1 document categories.';
             content = _CategoriesPreview(width: contentWidth);
