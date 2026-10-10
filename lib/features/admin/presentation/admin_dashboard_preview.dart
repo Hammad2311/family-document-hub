@@ -52,30 +52,48 @@ class AdminDashboardPreview extends StatefulWidget {
 }
 
 class _AdminDashboardPreviewState extends State<AdminDashboardPreview> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   String _selectedPage = 'Overview';
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: _background,
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final showSidebar = constraints.maxWidth >= 1050;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final showSidebar = constraints.maxWidth >= 1050;
 
-            return Row(
+        return Scaffold(
+          key: _scaffoldKey,
+          backgroundColor: _background,
+          drawer: showSidebar
+              ? null
+              : Drawer(
+                  width: 280,
+                  child: SafeArea(
+                    child: _DashboardSidebar(
+                      selectedPage: _selectedPage,
+                      onSelect: (page) {
+                        setState(() => _selectedPage = page);
+                        _scaffoldKey.currentState?.closeDrawer();
+                      },
+                    ),
+                  ),
+                ),
+          body: SafeArea(
+            child: Row(
               children: [
                 if (showSidebar)
                   _DashboardSidebar(
                     selectedPage: _selectedPage,
-                    onSelect: (page) {
-                      setState(() => _selectedPage = page);
-                    },
+                    onSelect: (page) => setState(() => _selectedPage = page),
                   ),
                 Expanded(
                   child: Column(
                     children: [
-                      const _DashboardHeader(),
+                      _DashboardHeader(
+                        onMenuTap: showSidebar
+                            ? null
+                            : () => _scaffoldKey.currentState?.openDrawer(),
+                      ),
                       Expanded(
                         child: _selectedPage == 'Overview'
                             ? _DashboardContent(showSidebar: showSidebar)
@@ -85,10 +103,10 @@ class _AdminDashboardPreviewState extends State<AdminDashboardPreview> {
                   ),
                 ),
               ],
-            );
-          },
-        ),
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
@@ -265,7 +283,9 @@ class _SidebarLabel extends StatelessWidget {
 }
 
 class _DashboardHeader extends StatelessWidget {
-  const _DashboardHeader();
+  const _DashboardHeader({this.onMenuTap});
+
+  final VoidCallback? onMenuTap;
 
   @override
   Widget build(BuildContext context) {
@@ -274,6 +294,12 @@ class _DashboardHeader extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
       child: Row(
         children: [
+          if (onMenuTap != null)
+            IconButton(
+              tooltip: 'Open navigation menu',
+              onPressed: onMenuTap,
+              icon: const Icon(Icons.menu, color: _navy),
+            ),
           const Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -98,4 +98,35 @@ void main() {
     expect(find.text('Test Member'), findsNothing);
     expect(find.text('8 of 10 members'), findsOneWidget);
   });
+
+  testWidgets('responsive drawer navigation works below 1050px', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(800, 1000);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    await tester.pumpWidget(const MaterialApp(home: AdminDashboardPreview()));
+
+    expect(find.text('Family overview'), findsOneWidget);
+    expect(find.byTooltip('Open navigation menu'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Open navigation menu'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Members'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Aarav Sample'), findsOneWidget);
+    expect(find.byTooltip('Open navigation menu'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Open navigation menu'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Documents'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Aadhaar_Sample_Member.pdf'), findsOneWidget);
+  });
 }
