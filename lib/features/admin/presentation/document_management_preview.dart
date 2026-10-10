@@ -40,20 +40,20 @@ class DocumentManagementPreview extends StatefulWidget {
 class _DocumentManagementPreviewState extends State<DocumentManagementPreview> {
   final List<_PreviewDocument> _documents = [
     const _PreviewDocument(
-      name: 'Aadhaar_Sample_Member.pdf',
-      member: 'Sample Member',
+      name: 'Aadhaar_Aarav_Sample.pdf',
+      member: 'Aarav Sample',
       category: 'Aadhaar',
       sizeBytes: 1258291,
     ),
     const _PreviewDocument(
-      name: 'Education_Sample_Member.pdf',
-      member: 'Sample Member',
+      name: 'Education_Mira_Sample.pdf',
+      member: 'Mira Sample',
       category: 'Education',
       sizeBytes: 860 * 1024,
     ),
     const _PreviewDocument(
-      name: 'Insurance_Sample_Member.pdf',
-      member: 'Sample Member',
+      name: 'Insurance_Dev_Sample.pdf',
+      member: 'Dev Sample',
       category: 'Insurance',
       sizeBytes: 2516582,
     ),
