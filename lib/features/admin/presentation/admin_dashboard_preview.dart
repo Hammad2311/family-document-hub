@@ -23,22 +23,22 @@ const _categories = <String>[
 
 const _documents = <_MockDocument>[
   _MockDocument(
-    name: 'Aadhaar_Sample_Member.pdf',
-    member: 'Sample Member',
+    name: 'Aadhaar_Aarav_Sample.pdf',
+    member: 'Aarav Sample',
     category: 'Aadhaar',
     size: '1.2 MB',
     icon: Icons.badge_outlined,
   ),
   _MockDocument(
-    name: 'Education_Sample_Member.pdf',
-    member: 'Sample Member',
+    name: 'Education_Mira_Sample.pdf',
+    member: 'Mira Sample',
     category: 'Education',
     size: '860 KB',
     icon: Icons.school_outlined,
   ),
   _MockDocument(
-    name: 'Insurance_Sample_Member.pdf',
-    member: 'Sample Member',
+    name: 'Insurance_Dev_Sample.pdf',
+    member: 'Dev Sample',
     category: 'Insurance',
     size: '2.4 MB',
     icon: Icons.health_and_safety_outlined,
@@ -529,7 +529,7 @@ class _ManagementPreviewPage extends StatelessWidget {
               records: [
                 _PreviewRecord(
                   'PDF uploaded',
-                  'Sample Member · Mock event',
+                  'Aarav Sample · Mock event',
                   Icons.upload_file_outlined,
                 ),
                 _PreviewRecord(
