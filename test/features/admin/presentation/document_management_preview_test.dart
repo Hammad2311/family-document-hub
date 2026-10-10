@@ -38,7 +38,7 @@ void main() {
 
     expect(find.text('4 sample documents'), findsOneWidget);
     expect(find.text('Passport_Test_Member.pdf'), findsOneWidget);
-    expect(find.text('Aarav Sample · Aadhaar'), findsOneWidget);
+    expect(find.text('Aarav Sample · Aadhaar'), findsNWidgets(2));
     expect(find.text('2.5 MiB'), findsOneWidget);
     expect(find.textContaining('No file was uploaded.'), findsOneWidget);
   });

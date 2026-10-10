@@ -28,7 +28,7 @@ void main() {
 
     await tester.tap(find.text('Documents').first);
     await tester.pumpAndSettle();
-    expect(find.text('Aadhaar_Sample_Member.pdf'), findsOneWidget);
+    expect(find.text('Aadhaar_Aarav_Sample.pdf'), findsOneWidget);
 
     await tester.tap(find.text('Categories').first);
     await tester.pumpAndSettle();
@@ -127,6 +127,6 @@ void main() {
     await tester.tap(find.text('Documents'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Aadhaar_Sample_Member.pdf'), findsOneWidget);
+    expect(find.text('Aadhaar_Aarav_Sample.pdf'), findsOneWidget);
   });
 }
